@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 
 public class CrystudioMod implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("crystudiomod");
-
 	@Override
 	public void onInitialize() {
 

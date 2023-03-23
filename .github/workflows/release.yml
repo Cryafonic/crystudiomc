@@ -1,0 +1,32 @@
+name: create release on merge from pull request
+
+on:
+  push:
+    branches:
+      - 1.19
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    container:
+      image: eclipse-temurin:17-jdk
+      options: --user root
+    steps:
+      - run: apt update && apt install git -y && git --version
+      - run: git config --global --add safe.directory /__w/fabric/fabric
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: FabricMC/fabric-action-scripts@v2
+        id: changelog
+        with:
+          context: changelog
+          workflow_id: release.yml
+      - uses: gradle/wrapper-validation-action@v1
+      - run: ./gradlew checkVersion build publish github --stacktrace -Porg.gradle.parallel.threads=4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CHANGELOG: ${{ steps.changelog.outputs.changelog }}
+          SIGNING_SERVER: ${{ secrets.SIGNING_SERVER }}
+          SIGNING_PGP_KEY: ${{ secrets.SIGNING_PGP_KEY }}
+          SIGNING_JAR_KEY: ${{ secrets.SIGNING_JAR_KEY }}
