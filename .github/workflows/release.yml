@@ -3,8 +3,8 @@ name: create release on merge from pull request
 on:
   push:
     branches:
-      - 1.19
-
+      - '1.19'
+      
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -23,7 +23,7 @@ jobs:
           context: changelog
           workflow_id: release.yml
       - uses: gradle/wrapper-validation-action@v1
-      - run: ./gradlew checkVersion build publish github --stacktrace -Porg.gradle.parallel.threads=4
+      - run: ./gradlew build publish github --stacktrace -Porg.gradle.parallel.threads=4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CHANGELOG: ${{ steps.changelog.outputs.changelog }}
