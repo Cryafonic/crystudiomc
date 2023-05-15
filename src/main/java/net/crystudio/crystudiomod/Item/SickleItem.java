@@ -26,8 +26,6 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.mojang.datafixers.util.Pair;
 
-
-
 public class SickleItem extends MiningToolItem{
     private static final ToolMaterial material = new SickleToolMaterial();
     public static final Item Sickle = new SickleItem(material, material.getAttackDamage(), 0, new FabricItemSettings().maxCount(1));
