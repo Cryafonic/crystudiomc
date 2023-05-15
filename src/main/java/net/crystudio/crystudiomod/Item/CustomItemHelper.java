@@ -9,8 +9,8 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class CustomItemHelper {
-    public static Item RegisterItem(String itemName, Item item) {
-        return Registry.register(Registries.ITEM,new Identifier(CrystudioMod.MOD_ID,itemName), item);
+    public static void RegisterItem(String itemName, Item item) {
+        Registry.register(Registries.ITEM,new Identifier(CrystudioMod.MOD_ID,itemName), item);
     }
 
     public static void AddToItemGroup(ItemGroup itemGroup,Item item) {
