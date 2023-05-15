@@ -1,6 +1,5 @@
 package net.crystudio.crystudiomod.mixin;
 
-import net.crystudio.crystudiomod.CrystudioMod;
 import net.minecraft.client.gui.screen.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,6 +10,5 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ExampleMixin {
 	@Inject(at = @At("HEAD"), method = "init()V")
 	private void init(CallbackInfo info) {
-		CrystudioMod.LOGGER.info("This line is printed by an example mod mixin!");
 	}
 }
