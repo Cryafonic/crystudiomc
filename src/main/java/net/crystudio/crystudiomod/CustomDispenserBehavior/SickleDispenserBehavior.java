@@ -1,5 +1,6 @@
-package net.crystudio.crystudiomod.Item;
+package net.crystudio.crystudiomod.CustomDispenserBehavior;
 
+import net.crystudio.crystudiomod.Item.SickleItem;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.item.ItemStack;
