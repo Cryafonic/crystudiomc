@@ -7,26 +7,30 @@ on:
       
 jobs:
   build:
-    runs-on: ubuntu-20.04
-    container:
-      image: eclipse-temurin:17-jdk
-      options: --user root
+    runs-on: ubuntu-latest
     steps:
-      - run: apt update && apt install git -y && git --version
-      - run: git config --global --add safe.directory /__w/fabric/fabric
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: FabricMC/fabric-action-scripts@v2
-        id: changelog
-        with:
-          context: changelog
-          workflow_id: release.yml
-      - uses: gradle/wrapper-validation-action@v1
-      - run: ./gradlew build publish github --stacktrace -Porg.gradle.parallel.threads=4
-        env:
+     - name: Checkout repo
+       uses: actions/checkout@v3
+     - name: Setup gradle
+       uses: gradle/gradle-build-action@v2
+     - name: Gradle build
+       uses: ./gradlew build
+     - name: Create Release
+       id: create_release
+       uses: actions/create-release@v1
+       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CHANGELOG: ${{ steps.changelog.outputs.changelog }}
-          SIGNING_SERVER: ${{ secrets.SIGNING_SERVER }}
-          SIGNING_PGP_KEY: ${{ secrets.SIGNING_PGP_KEY }}
-          SIGNING_JAR_KEY: ${{ secrets.SIGNING_JAR_KEY }}
+       with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+     - name: Upload release assest (.jar)
+       uses: actions/upload-release-asset@v1
+       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: build/libs/*.jar
+        asset_name: crystudiomod.jar
+        asset_content_type: application/java-archive
