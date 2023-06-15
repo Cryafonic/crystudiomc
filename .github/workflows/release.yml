@@ -1,4 +1,4 @@
-name: create release on merge from pull request
+name: create release
 
 on:
   push:
