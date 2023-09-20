@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 
 public class CustomItemHelper {
@@ -13,7 +14,7 @@ public class CustomItemHelper {
         Registry.register(Registries.ITEM,new Identifier(CrystudioMod.MOD_ID,itemName), item);
     }
 
-    public static void AddToItemGroup(ItemGroup itemGroup,Item item) {
+    public static void AddToItemGroup(RegistryKey<ItemGroup> itemGroup,Item item) {
         ItemGroupEvents.modifyEntriesEvent(itemGroup).register(x -> x.add(item));
     }
 
