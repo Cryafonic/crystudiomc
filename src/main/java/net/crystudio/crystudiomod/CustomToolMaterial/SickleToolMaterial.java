@@ -1,5 +1,6 @@
-package net.crystudio.crystudiomod.Item;
+package net.crystudio.crystudiomod.CustomToolMaterial;
 
+import net.crystudio.crystudiomod.Item.SickleItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 

@@ -1,4 +1,4 @@
-package net.crystudio.crystudiomod.Item;
+package net.crystudio.crystudiomod.CustomHelpers;
 
 import net.crystudio.crystudiomod.CrystudioMod;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
