@@ -3,7 +3,7 @@ name: create release
 on:
   push:
     branches:
-      - '1.19'
+      - 'master'
       
 permissions:
   contents: write
